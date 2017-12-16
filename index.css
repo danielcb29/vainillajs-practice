@@ -1,34 +1,51 @@
-#loading {
+html { 
+    background-color: #CCCCC5;
     font-family: Arial;
+}
+
+#loading {
     text-align: center;
     font-size: 25px;;
-    color: darkslategray;
+    color: white;
 }
 
 #title {
-    font-family: Arial;
-    color: darkslategray;
+    color: black;
     margin: 10px;
 }
 
 .movie {
     color: gray;
-    font-family: Arial; 
-    border: 1px solid gray;
     margin: 10px;
     border-radius: 5px;
     padding: 30px;
     display: flex;
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .movie-image {
-    width: 400px;
+    flex: 3;
 }
 
 .movie-content {
-    flex: 1;
+    flex: 7;
+    padding: 0 1.5em;
 }
 
 .movie-overview {
     color: black;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    .movie-image, .movie-content, .movie {
+        display: block;
+    }
 }
