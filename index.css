@@ -1,4 +1,34 @@
-.movie-title {
-    color: darkblue;
+#loading {
+    font-family: Arial;
+    text-align: center;
+    font-size: 25px;;
+    color: darkslategray;
+}
+
+#title {
+    font-family: Arial;
+    color: darkslategray;
+    margin: 10px;
+}
+
+.movie {
+    color: gray;
     font-family: Arial; 
+    border: 1px solid gray;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 30px;
+    display: flex;
+}
+
+.movie-image {
+    width: 400px;
+}
+
+.movie-content {
+    flex: 1;
+}
+
+.movie-overview {
+    color: black;
 }
