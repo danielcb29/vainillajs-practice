@@ -32,6 +32,7 @@ const loadMovies = () => {
         //Trailer button
         const divTrailerButton = document.createElement('div');
         divTrailerButton.className = 'trailer-button';
+        divTrailerButton.setAttribute('movie-id', element.id);
         const buttonText = document.createTextNode('Trailer!');
         divTrailerButton.appendChild(buttonText);
 
@@ -40,6 +41,42 @@ const loadMovies = () => {
         divContent.appendChild(divTitle);
         divContent.appendChild(pOverview);
         divContent.appendChild(divTrailerButton);
+    };
+
+    const createVideoModal = (divModal, element) => {
+        divModal.id = `trailer-${element.id}`;
+        divModal.className = 'modal';
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+
+        const close = document.createElement('span');
+        close.className = 'close-modal';
+        close.innerHTML = '&times;';
+        close.setAttribute('movie-id', element.id)
+
+        const videoContent = document.createElement('div')
+        const videoTitle = document.createElement('h3');
+        videoTitle.innerHTML = element.title;
+        const video = document.createElement('img');
+        video.setAttribute('src',`${imageUrl}${element.poster_path}`);
+        video.className = 'video-movie';
+        videoContent.appendChild(videoTitle);
+        videoContent.appendChild(video);
+
+        modalContent.appendChild(close);
+        modalContent.appendChild(videoContent);
+
+        divModal.appendChild(modalContent);
+    };
+
+    const openVideo = (button) => {
+        const movieId = button.getAttribute('movie-id');
+        const modal = document.getElementById(`trailer-${movieId}`);
+        modal.style.display = 'block';
+    };
+
+    const closeVideo = (modal) => {
+        modal.style.display = 'none';
     };
 
     let currentMovies = null;
@@ -62,24 +99,32 @@ const loadMovies = () => {
             divMovieData.appendChild(divImage);
             divMovieData.appendChild(divContent);
 
-
-            // // Trailer
-            // const divTrailer = document.createElement('div');
-            // divTrailer.className = 'movie-trailer';
+            // Video modal
+            const divModal = document.createElement('div');
+            createVideoModal(divModal, element);
 
             // Add current div to container
             listContainer.appendChild(divMovieData);
+            listContainer.appendChild(divModal);
+        });
+    }).then(() => {
+        const trailerButtons = document.getElementsByClassName('trailer-button');
+        Array.from(trailerButtons).forEach(button => {
+            button.onclick = event => {
+                openVideo(button);
+            }
+        });
+    }).then(() => {
+        const closeButtons = document.getElementsByClassName('close-modal');
+        Array.from(closeButtons).forEach(button => {
+            const movieId = button.getAttribute('movie-id');
+            const modal = document.getElementById(`trailer-${movieId}`);
+            button.onclick = event => {    
+                closeVideo(modal);
+            };
         });
     });
 };
-
-const openVideo = () => {
-    if (!isVideoOpen) {
-
-    } else {
-
-    }
-}
 
 
 const main = () => {
