@@ -1,17 +1,18 @@
 html { 
-    background-color: #CCCCC5;
+    background-color: #f6f6f7;
     font-family: Arial;
 }
 
 #loading {
     text-align: center;
     font-size: 25px;;
-    color: white;
+    color: black;
 }
 
 #title {
-    color: black;
+    color: gray;
     margin: 10px;
+    text-align: center;
 }
 
 .movie {
@@ -21,8 +22,6 @@ html {
     padding: 30px;
     display: flex;
     background-color: white;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
@@ -37,6 +36,15 @@ html {
 
 .movie-overview {
     color: black;
+}
+
+.trailer-button {
+    background-color: #f2f2f2;
+    font-size: 1.1em;
+    padding: 1em;
+    width: 10%;
+    text-align: center;
+    cursor: pointer;
 }
 
 img {
