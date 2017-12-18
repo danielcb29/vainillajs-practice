@@ -1,6 +1,5 @@
 const apiKey = '6dc0d2605088c01254ffedbd444bc2e4';
 const imageUrl = 'http://image.tmdb.org/t/p/w300/';
-let isVideoOpen = false;
 
 const getMovies = () => {
     return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US`).then(movies => {
@@ -20,8 +19,12 @@ const loadMovies = () => {
     const createMovieContent = (divContent, element) => {
         //Title
         const divTitle = document.createElement('h2');
-        const titleText = document.createTextNode(element.title);
+        const titleText = document.createTextNode(`${element.title}  `);
+        const releaseDateContainer = document.createElement('small');
+        const relaseDateText = document.createTextNode(`${element.release_date}`);
+        releaseDateContainer.appendChild(relaseDateText);
         divTitle.appendChild(titleText);
+        divTitle.appendChild(releaseDateContainer);
 
         //Overview
         const pOverview = document.createElement('p');
@@ -31,7 +34,7 @@ const loadMovies = () => {
 
         //Trailer button
         const divTrailerButton = document.createElement('div');
-        divTrailerButton.className = 'trailer-button';
+        divTrailerButton.className = 'btn trailer-button';
         divTrailerButton.setAttribute('movie-id', element.id);
         const buttonText = document.createTextNode('Trailer!');
         divTrailerButton.appendChild(buttonText);
@@ -79,10 +82,16 @@ const loadMovies = () => {
         modal.style.display = 'none';
     };
 
-    let currentMovies = null;
-    const listContainer = document.getElementById('container');
-    
+    const setMovieOrder = (newOrder) => {
+
+    };
+
+    const movieOrder = 'up';
+
     getMovies().then(response => {
+        const listContainer = document.getElementById('container');
+        let currentMovies = null;
+
         listContainer.innerHTML = '';
         currentMovies = response.results;
         currentMovies.forEach(element => {
@@ -123,6 +132,12 @@ const loadMovies = () => {
                 closeVideo(modal);
             };
         });
+    }).then(() => {
+        const orderButton = document.getElementById('release-order');
+        orderButton.onclick = event => {
+
+            setMovieOrder();
+        };
     });
 };
 
